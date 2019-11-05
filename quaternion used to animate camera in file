@@ -1,0 +1,69 @@
+//A quaternion is a four-element vector that can be used to encode any rotation in a 3D coordinate system. Technically, 
+//a quaternion is composed of one real element and three complex elements, 
+//and it can be used for much more than rotations.
+//this is for the vr function itself
+void loop() {
+    // Do nothing if DMP doesn't initialize correctly
+    if (!dmpReady) return;
+
+    // wait for MPU interrupt or extra packet(s) to be available
+    while (!mpuInterrupt && fifoCount < packetSize) {
+    }
+    // reset interrupt flag and get INT_STATUS byte
+    mpuInterrupt = false;
+    mpuIntStatus = mpu.getIntStatus();
+
+    // get current FIFO count
+    fifoCount = mpu.getFIFOCount();
+
+    if ((mpuIntStatus & 0x10) || fifoCount == 1024) {
+        mpu.resetFIFO();
+    }
+
+    // check for interrupt
+    else if (mpuIntStatus & 0x02) {
+        while (fifoCount < packetSize) fifoCount = mpu.getFIFOCount();
+        mpu.getFIFOBytes(fifoBuffer, packetSize);
+        fifoCount -= packetSize;
+
+        mpu.dmpGetQuaternion(&q, fifoBuffer);
+
+
+        // find direction of gravity (down in world frame)
+        VectorFloat down;
+        mpu.dmpGetGravity(&down, &q);
+        
+        // tilt angle is the angle made between world-y and the "up"-vector (just negative of "down")
+        float phi = acos( -down.y / down.getMagnitude() );
+
+        // drift due to tilt
+        Quaternion d_tilt( cos(phi/2.f), -down.getNormalized().z * sin(phi/2.f), 0.f, down.getNormalized().x * sin(phi/2.f) );
+
+
+        [
+        Quaternion d_yaw; // just default to identity if no magnetometer is available.
+
+        // COMPLEMENTARY FILTER (YAW CORRECTION * TILT CORRECTION * QUATERNION FROM ABOVE)
+        double tilt_correct = -ALPHA * 2.f * acos(d_tilt.w);
+        double yaw_correct  = -BETA  * 2.f * acos(d_yaw.w);
+        
+        //use quaternion rotations to animate all of their camera movements.
+        //Every third-person game has a virtual camera placed at some distance behind or to the side of the player's character. 
+        //Because this camera goes through different motions 
+        //(that is, through arcs of a different lengths) than the character, 
+        //camera motion can appear unnatural and too "jerky" for the player to follow the action. 
+        //This is one area where quaternions come to rescue. 
+        Quaternion tilt_correction( cos(tilt_correct/2.f), -down.getNormalized().getMagnitude() * sin(tilt_correct/2.f), 0.f, down.getNormalized().x * sin(tilt_correct/2.f) );
+        Quaternion yaw_correction( cos(yaw_correct/2.f), 0.f, sin(yaw_correct/2.f), 0.f);
+         
+        
+        // qc = yc * tc * q
+        Quaternion qc(tilt_correction.w, tilt_correction.x, tilt_correction.y, tilt_correction.z);
+        qc.getProduct(yaw_correction);
+        qc.getProduct(tilt_correction);
+        qc.getProduct(q);
+
+        // report result
+        relativ.updateOrientation(q.x, q.y, q.z, q.w, 4);  
+    }
+}

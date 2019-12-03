@@ -6,7 +6,7 @@ VR::VR() {
 }
 
 
-void Relativ::start() {
+void VR::start() {
   Serial.begin(250000);
 }
 

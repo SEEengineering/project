@@ -1,8 +1,8 @@
 
 #include "Arduino.h"
-#include "Relativ.h"
+#include "VR.h"
 
-Relativ::Relativ() {
+VR::VR() {
 }
 
 

@@ -1,0 +1,27 @@
+//understanding qunaternions
+Quaternion d_yaw; 
+
+        // COMPLEMENTARY FILTER (YAW CORRECTION * TILT CORRECTION * QUATERNION FROM ABOVE)
+        double tilt_correct = -ALPHA * 2.f * acos(d_tilt.w);
+        double yaw_correct  = -BETA  * 2.f * acos(d_yaw.w);
+
+        //rotation to unit quanternions
+        //let(unit)rotations axis be [Ux,Uy,Uz] and angle be 0
+        
+        //q = cos(theta/2)+ sin(theta/2) UxI + sin(theta/2)UyJ + sin(theta/2)UzK
+        //this is the corresponding quanternions
+        Quaternion tilt_correction( cos(tilt_correct/2.f), -down.getNormalized().getMagnitude() * sin(tilt_correct/2.f), 0.f, down.getNormalized().x * sin(tilt_correct/2.f) );
+
+        //YAW used to rotate around the Y axis
+        Quaternion yaw_correction( cos(yaw_correct/2.f), 0.f, sin(yaw_correct/2.f), 0.f);
+
+        // qc = yc * tc * q
+        Quaternion qc(tilt_correction.w, tilt_correction.x, tilt_correction.y, tilt_correction.z);
+        qc.getProduct(yaw_correction);
+        qc.getProduct(tilt_correction);
+        qc.getProduct(q);
+
+        // report result
+        relativ.updateOrientation(q.x, q.y, q.z, q.w, 4);  
+    }
+}

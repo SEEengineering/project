@@ -1,7 +1,7 @@
 // this to set up my stm32 to communicate with my gyroscope
 
 //custom library for steam vr implementation
-#include "Relativ.h"
+#include "VR.h"
 //communication between devices
 #include "I2Cdev.h"
 
@@ -15,7 +15,7 @@
 #endif
 
 MPU6050 mpu;
-Relativ relativ; 
+VR Vr; 
 
 //interrupt pin on PA1 PIN on STM32
 #define INTERRUPT_PIN PA1

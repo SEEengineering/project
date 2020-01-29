@@ -1,4 +1,7 @@
-                                                    # Final Year Project
+![](VRimages/giphyj.gif)
+![](VRimages/OQw6pMk.gif)
+![](VRimages/giphys.gif)                                          
+                                                   # Final Year Project
                                                     # vr headset + game
 the goal of this project is to create  VR democratization by the means of inexpensive hardware and 
 create a vr game using Unreal engine.

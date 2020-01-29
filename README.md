@@ -1,12 +1,13 @@
                                                    # Final Year Project
                                                     # vr headset + game
 ![](VRimages/giphyj.gif)
-![](VRimages/OQw6pMk.gif)
 ![](VRimages/giphys.gif)                                          
                                                   
 the goal of this project is to create  VR democratization by the means of inexpensive hardware and 
 create a vr game using Unreal engine.
 the hardware i will be using is an STm32 Microcontroller and a Mpu6050
+
+![](VRimages/OQw6pMk.gif)
 
                                                   WHY I AM USING AN STM32?
                                                          the speed ! 

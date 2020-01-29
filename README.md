@@ -1,5 +1,5 @@
                                                    Final Year Project
-                                                   vr headset + game
+                                                      VR headset 
 ![](VRimages/giphyj.gif)
 ![](VRimages/giphys.gif)                                          
                                                   

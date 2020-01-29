@@ -1,5 +1,5 @@
-                                                   # Final Year Project
-                                                    # vr headset + game
+                                                   Final Year Project
+                                                   vr headset + game
 ![](VRimages/giphyj.gif)
 ![](VRimages/giphys.gif)                                          
                                                   

@@ -1,3 +1,4 @@
+![](VRimages/gmitlogo.jpg)
 # Final Year Project
 # VR headset 
 

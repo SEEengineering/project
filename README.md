@@ -1,5 +1,6 @@
-                                                   Final Year Project
-                                                      VR headset 
+# Final Year Project
+# VR headset 
+
 ![](VRimages/giphyj.gif)![](VRimages/giphys.gif)
                                           
                                                   
@@ -9,13 +10,13 @@ the hardware i will be using is an STm32 Microcontroller and a Mpu6050
 
 ![](VRimages/OQw6pMk.gif)
                                                 
-                                                     How It Works
+## How It Works
 
 VR glasses contain 2 lenses that help to create a 3D virtual image by angling 2 slightly different 2d images. light passes through the cornea, iris and lens up to finally at the retina. from the retina all the information travels to the brain and is processed
 
+## WHY I AM USING AN STM32?
+## The Speed! 
 
-                                                  WHY I AM USING AN STM32?
-                                                        The Speed! 
 as the clock speed gets higher , the amount of time a microcontroller will need for executing a code instruction will decrease ! say a microcontroller capable of a 400Mhz clock speed . this 400Mhz means that the controller can do 400 million clock cycles on one second . any code instruction will need certain amounts of clock cycles to be totally executed . example: say we have that microcontroller with 400Mhz clock speed . 
 and say we have a code instruction that needs 100 clock cycles to be executed . 
 question: how much time this microcontroller needs to execute this code instruction ? solution: 400Mhz -> 400 million clock cycle per second any clock cycle will then be at : 1/(400 million) = 2.5 nS (nano second) so we have 2.5nS per clock cycle for this microcontroller . so the 100 clock code instructions will need 2.5nS x 100 = [ 250 nS ] to be totally executed by this 400MHz microcontroller . 
@@ -25,7 +26,7 @@ and if the microcontroller is not very fast to execute them within the acceptabl
 in this VR application ,most cases you will have a delay between the movement of the unit and the displayed view on the lcd !
 
 
-In General :
+## In General :
 1.      We get the gyroscope+accelerometer data from the MPU6050 sensor through the I²C .
 2.      We process these data to get the Quaternions we needs q(w,x,y,z).
 3.      We use the Quaternions to get the gravity vectors .

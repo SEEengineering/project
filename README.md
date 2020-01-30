@@ -26,6 +26,17 @@ that requires lots of clock cycles .
 and if the microcontroller is not very fast to execute them within the acceptable amount of time , other followed instructions will got delayed ! and so maybe a Small functioning on the work of the entire code . 
 in this VR application ,most cases you will have a delay between the movement of the unit and the displayed view on the lcd !
 
+## How will steam vr receive the signals?
+
+## OSVR(OPEN SOURCE VIRTUAL REALITY)
+
+![](VRimages/Razer_OSVR_Open-Source_Virtual_Reality_for_Gaming_(16863428525).jpg)
+
+Open Source Virtual Reality is an open-source software project that aims to enable headsets and game controllers from all vendors to be used with any games developed by Razer and Senses. It is also a virtual reality headset that claims to be open-source hardware using the OSVR software
+ OSVR is designed to work with several other head-mounted displays and is on a mission to establish an open standard so that existing devices and software can become interoperable.
+Developers and consumers with OSVR-compatible HMDs, can already get started by configuring their equipment. The OSVR website features a perfect showcase of their software (also called “experiences”) that are compatible and ready to run. There are already games, media players, emulators and more! There is lots of SteamVR-powered content too.
+
+
 
 ## In General :
 1.      We get the gyroscope+accelerometer data from the MPU6050 sensor through the I²C .

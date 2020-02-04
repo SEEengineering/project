@@ -15,7 +15,7 @@ the hardware i will be using is an STm32 Microcontroller and a Mpu6050
 
 VR glasses contain 2 lenses that help to create a 3D virtual image by angling 2 slightly different 2d images. light passes through the cornea, iris and lens up to finally at the retina. from the retina all the information travels to the brain and is processed
 
-## components i will be using
+## Components I will be using
 ## STM32
 
 ![](VRimages/arm-stm32-blue-pill.jpg)
@@ -30,6 +30,10 @@ let's do all that , for a standard arduino board that usually have a 16Mhz clock
 that requires lots of clock cycles . 
 and if the microcontroller is not very fast to execute them within the acceptable amount of time , other followed instructions will got delayed ! and so maybe a Small functioning on the work of the entire code . 
 in this VR application ,most cases you will have a delay between the movement of the unit and the displayed view on the lcd !
+
+## MPU6050
+![](VRimages/sku_154602_2-500x500.jpg)
+ 	
 
 ## How will steam vr receive the signals?
 

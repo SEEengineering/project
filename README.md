@@ -15,6 +15,10 @@ the hardware i will be using is an STm32 Microcontroller and a Mpu6050
 
 VR glasses contain 2 lenses that help to create a 3D virtual image by angling 2 slightly different 2d images. light passes through the cornea, iris and lens up to finally at the retina. from the retina all the information travels to the brain and is processed
 
+## components i will be using
+##STM32
+![](VRimages/arm-stm32-blue-pill.jpg)
+
 ## WHY I AM USING AN STM32?
 ## The Speed! 
 

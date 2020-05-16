@@ -10,7 +10,7 @@
 
 
 
-#include "Relativ.h"
+
 
 #include "I2Cdev.h" // the I2C library for the I²C communiation with the MPU6050 (the (Accelerometer + Gyroscope)sensor) this is used when using the STM32 board
 
@@ -21,7 +21,7 @@
 #endif             // you see it's conditionally used (if we're using an arduino board)
 
 MPU6050 mpu;
-Relativ relativ; 
+vr Vr; 
 
 #define INTERRUPT_PIN PA1
 // set these to correct for drift - try small values ~0.000001
@@ -52,7 +52,7 @@ void setup() {
         Fastwire::setup(400, true);
     #endif
 
-    relativ.start(); // serial.begin() starting the serial communiation
+    Vr.start(); // serial.begin() starting the serial communiation
     
     mpu.initialize(); // initializing the mpu sensor by initializing (the clocksource + the gyroscope range + the accelerometer range + waking it up by disableing the sleep mode )
     pinMode(INTERRUPT_PIN, INPUT);

@@ -1,15 +1,3 @@
-// Copyright (c) 2019 Relativty
-// Sarahghz stm32f103c8t6 Blue Pill release
-// Version: 1.7
-// Date:    02/04/2019
-
-//=============================================================================
-// I2Cdev must still be installed in libraries, 
-// as MPU6050 requires the unpatched version to compile.
-//=============================================================================
-
-
-
 
 
 #include "I2Cdev.h" // the I2C library for the I²C communiation with the MPU6050 (the (Accelerometer + Gyroscope)sensor) this is used when using the STM32 board

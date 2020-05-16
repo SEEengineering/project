@@ -1,0 +1,51 @@
+// this to set up my stm32 to communicate with my gyroscope
+
+//custom library for steam vr implementation
+#include "VR.h"
+//communication between devices
+#include "I2Cdev.h"
+
+//custom library gyro library
+#include "MPU6050_6Axis_MotionApps20.h"
+
+//if wires have been connected properly then allow wire h library to be used
+//allows the communication with I2C pins in STM32 PINS. SDA(PB9) + SCL(PB8)
+#if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
+#include "Wire.h"
+#endif
+
+MPU6050 mpu;
+VR Vr; 
+
+//interrupt pin on PA1 PIN on STM32
+#define INTERRUPT_PIN PA1
+// set these to correct for drift - try small values ~0.000001
+#define ALPHA 0.f // correction for drift - tilt channel
+#define BETA  0.f // correction for drift - yaw channel
+
+//code to read mpu6050 to control and process data
+// IMU status and control:
+//DMP digital motion processin combines the accelerometer and gyroscope data 
+//used to process data 
+bool dmpReady = false;  // true if DMP init was successful
+uint8_t mpuIntStatus;   
+uint8_t devStatus;      // 0 = success, !0 = error
+uint16_t packetSize;    
+uint16_t fifoCount;     
+uint8_t fifoBuffer[64]; 
+//holds the value for x y and z in mpu
+Quaternion q;           // [w, x, y, z]
+
+volatile bool mpuInterrupt = false;     // indicates whether MPU interrupt pin has gone high
+void dmpDataReady() {
+    mpuInterrupt = true;
+}
+
+void setup() {
+    #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
+        Wire.setSDA(PB9);
+        Wire.setSCL(PB8);
+        Wire.begin();
+    #elif I2CDEV_IMPLEMENTATION == I2CDEV_BUILTIN_FASTWIRE
+        Fastwire::setup(400, true);
+    #endif

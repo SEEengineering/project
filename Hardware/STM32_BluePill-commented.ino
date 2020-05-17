@@ -186,7 +186,7 @@ void loop() {
         qc.getProduct(q); //
 
         // report result
-        relativ.updateOrientation(q.x, q.y, q.z, q.w, 4);  //(4) in the document
+        vr.updateOrientation(q.x, q.y, q.z, q.w, 4);  //(4) in the document
         
     }
 }

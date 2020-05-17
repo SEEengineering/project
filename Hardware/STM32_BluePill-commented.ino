@@ -139,7 +139,7 @@ void loop() {
         // here they state that the -Vy is the adj
         // so cos(phi)=-Vy/Magnetude   --->   phi = acos(-Vy/Magnetude )
 
-        float phi = acos( -down.y / down.getMagnitude() );
+        float GravityVector = acos( -down.y / down.getMagnitude() );
         
 
         // drift due to tilt
